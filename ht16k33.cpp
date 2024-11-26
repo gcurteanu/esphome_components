@@ -1,7 +1,7 @@
 #include "esphome/core/log.h"
 #include "esphome/core/hal.h"
 #include "esphome/core/helpers.h"
-#include "ht16k33_display.h"
+#include "ht16k33.h"
 #include "font.h"
 
 #ifndef USE_ESP8266
