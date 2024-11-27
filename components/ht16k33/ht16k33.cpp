@@ -72,9 +72,9 @@ void HT16K33AlphaDisplay::display_() {
   }
 
   ESP_LOGD("dsp", "Total=%d", numc);
-  for (int i=0; i<numc; i++) {
+  /*for (int i=0; i<numc; i++) {
     ESP_LOGD("dsp", "%hX", (uint8_t)data[i]);
-  }
+  }*/
   pos = 0;
   for (auto *display : this->displays_) {
     display->write_bytes(DISPLAY_COMMAND_SET_DDRAM_ADDR, data + pos, 8);
