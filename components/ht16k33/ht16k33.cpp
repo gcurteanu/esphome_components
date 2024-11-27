@@ -24,7 +24,7 @@ void HT16K33AlphaDisplay::setup() {
   for (auto *display : this->displays_) {
     display->write_bytes(DISPLAY_COMMAND_SYSTEM_SETUP, nullptr, 0);
     display->write_bytes(DISPLAY_COMMAND_DISPLAY_ON, nullptr, 0);
-    display->write_bytes(DISPLAY_COMMAND_SET_DDRAM_ADDR, 0x00, 8);
+    //display->write_bytes(DISPLAY_COMMAND_SET_DDRAM_ADDR, 0x00, 8);
     /*
     for (int i=0; i<16; i++) {
       display->write_bytes(DISPLAY_COMMAND_SET_DDRAM_ADDR, 0xff, 8);
@@ -73,12 +73,12 @@ void HT16K33AlphaDisplay::display_() {
     data[i] = this->buffer_[pos];
   }
 
-  /*
+  
   ESP_LOGD("dsp", "Total=%d", numc);
   for (int i=0; i<numc; i++) {
     ESP_LOGD("dsp", "%hX", (uint8_t)data[i]);
   }
-  */
+  
   pos = 0;
   for (auto *display : this->displays_) {
     display->write_bytes(DISPLAY_COMMAND_SET_DDRAM_ADDR, data + pos, 8);
