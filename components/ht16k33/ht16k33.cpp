@@ -25,9 +25,9 @@ void HT16K33AlphaDisplay::setup() {
     display->write_bytes(DISPLAY_COMMAND_SYSTEM_SETUP, nullptr, 0);
     display->write_bytes(DISPLAY_COMMAND_DISPLAY_ON, nullptr, 0);
     display->write_bytes(DISPLAY_COMMAND_SET_DDRAM_ADDR, 0x00, 8);
-    for (int i=0; i<16; i++) {
+    /*for (int i=0; i<16; i++) {
       display->write_bytes(DISPLAY_COMMAND_SET_DDRAM_ADDR, 0xff, 8);
-    }
+    }*/
   }
   this->set_brightness(1);
 }
