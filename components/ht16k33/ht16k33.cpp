@@ -71,9 +71,9 @@ void HT16K33AlphaDisplay::display_() {
     data[i] = this->buffer_[pos];
   }
 
-  ESP_LOGD("dsp", "Total %d", numc);
+  ESP_LOGD("dsp", "Total=%d", numc);
   for (int i=0; i<numc; i++) {
-    ESP_LOGD("dsp", "%X", data[i]);
+    ESP_LOGD("dsp", "%hX", (uint8_t)data[i]);
   }
   pos = 0;
   for (auto *display : this->displays_) {
