@@ -59,7 +59,7 @@ void HT16K33AlphaDisplay::loop() {
 float HT16K33AlphaDisplay::get_setup_priority() const { return setup_priority::PROCESSOR; }
 
 void HT16K33AlphaDisplay::display_() {
-  int numc = this->displays_.size() * 8;
+  int numc = this->displays_.size() * 16;
   int len = this->buffer_.size();
   uint8_t data[numc];
   memset(data, 0, numc);
@@ -81,8 +81,8 @@ void HT16K33AlphaDisplay::display_() {
   
   pos = 0;
   for (auto *display : this->displays_) {
-    display->write_bytes(DISPLAY_COMMAND_SET_DDRAM_ADDR, data + pos, 8);
-    pos += 8;
+    display->write_bytes(DISPLAY_COMMAND_SET_DDRAM_ADDR, data + pos, 16);
+    pos += 16;
   }
 }
 
