@@ -16,6 +16,7 @@ static const char *TAG = "ht16k33_alpha";
 // First set bit determines command, bits after that are the data.
 static const uint8_t DISPLAY_COMMAND_SET_DDRAM_ADDR = 0x00;
 static const uint8_t DISPLAY_COMMAND_SYSTEM_SETUP = 0x21;
+static const uint8_t DISPLAY_COMMAND_INT_SETUP = 0xA0;
 static const uint8_t DISPLAY_COMMAND_DISPLAY_OFF = 0x80;
 static const uint8_t DISPLAY_COMMAND_DISPLAY_ON = 0x81;
 static const uint8_t DISPLAY_COMMAND_DIMMING = 0xE0;
@@ -23,6 +24,7 @@ static const uint8_t DISPLAY_COMMAND_DIMMING = 0xE0;
 void HT16K33AlphaDisplay::setup() {
   for (auto *display : this->displays_) {
     display->write_bytes(DISPLAY_COMMAND_SYSTEM_SETUP, nullptr, 0);
+    display->write_bytes(DISPLAY_COMMAND_INT_SETUP, nullptr, 0);
     display->write_bytes(DISPLAY_COMMAND_DISPLAY_ON, nullptr, 0);
   }
   this->set_brightness(1);
