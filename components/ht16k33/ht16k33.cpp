@@ -30,7 +30,7 @@ void HT16K33AlphaDisplay::setup() {
 
 void HT16K33AlphaDisplay::loop() {
   unsigned long now = millis();
-  int numc = this->displays_.size() * this->digits_ * 2;
+  int numc = this->displays_.size() * 16;
   int len = this->buffer_.size();
   if (!this->scroll_ || (len <= numc))
     return;
@@ -53,12 +53,12 @@ void HT16K33AlphaDisplay::loop() {
 float HT16K33AlphaDisplay::get_setup_priority() const { return setup_priority::PROCESSOR; }
 
 void HT16K33AlphaDisplay::display_() {
-  int numc = this->displays_.size() * this->digits_ * 2;
+  int numc = this->displays_.size() * 16;
   int len = this->buffer_.size();
   uint8_t data[numc];
   memset(data, 0, numc);
   int pos = this->offset_;
-  for (int i = 0; i < numc; i++, pos++) {
+  for (int i = 0; i < (this->digits_ * 2); i++, pos++) {
     if (pos >= len) {
       if (!this->continuous_)
         break;
@@ -74,8 +74,8 @@ void HT16K33AlphaDisplay::display_() {
   }*/
   pos = 0;
   for (auto *display : this->displays_) {
-    display->write_bytes(DISPLAY_COMMAND_SET_DDRAM_ADDR, data + pos, this->digits_ * 2);
-    pos += this->digits_ * 2;
+    display->write_bytes(DISPLAY_COMMAND_SET_DDRAM_ADDR, data + pos, 16);
+    pos += 16;
   }
 }
 
@@ -83,7 +83,7 @@ void HT16K33AlphaDisplay::update() {
   int prev_fill = this->buffer_.size();
   this->buffer_.clear();
   this->call_writer();
-  int numc = this->displays_.size() * this->digits_ * 2;
+  int numc = this->displays_.size() * 16;
   int len = this->buffer_.size();
   if ((this->scroll_ && (prev_fill != len) && !this->continuous_) || (len <= numc)) {
     this->last_scroll_ = millis();
