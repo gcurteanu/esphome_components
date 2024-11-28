@@ -69,7 +69,7 @@ void HT16K33AlphaDisplay::display_() {
 
 
   ESP_LOGD("dsp", "chars=%d", (int)numc);
-  for(i=0;i<numc;i++) {
+  for(int i=0;i<numc;i++) {
     ESP_LOGD("dsp", "byte[%02d]=%04X", (int)i, (int)data[i]);
   }
   pos = 0;
