@@ -41,9 +41,10 @@ async def to_code(config):
                                           [(HT16K33AlphaDisplay.operator('ref'), 'it')],
                                           return_type=cg.void)
         cg.add(var.set_writer(lambda_))
+
+    cg.add(var.set_digits(config[CONF_DIGITS]))
     if config[CONF_SCROLL]:
         cg.add(var.set_scroll(True))
-        cg.add(var.set_digits(config[CONF_DIGITS]))
         cg.add(var.set_continuous(config[CONF_CONTINUOUS]))
         cg.add(var.set_scroll_speed(config[CONF_SCROLL_SPEED]))
         cg.add(var.set_scroll_dwell(config[CONF_SCROLL_DWELL]))
