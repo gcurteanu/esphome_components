@@ -45,7 +45,7 @@ async def to_code(config):
         cg.add(var.set_writer(lambda_))
 
     cg.add(var.set_digits(config[CONF_DIGITS]))
-    cg.add(var.set_digits(config[CONF_REVERSE]))
+    cg.add(var.set_reverse(config[CONF_REVERSE]))
     if config[CONF_SCROLL]:
         cg.add(var.set_scroll(True))
         cg.add(var.set_continuous(config[CONF_CONTINUOUS]))
