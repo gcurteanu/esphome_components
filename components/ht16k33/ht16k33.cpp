@@ -142,7 +142,16 @@ void HT16K33AlphaDisplay::printf(const char *format, ...) {
   int ret = vsnprintf(buffer, sizeof(buffer), format, arg);
   va_end(arg);
   if (ret > 0)
-    this->print(buffer);
+    if (this->reverse_) {
+      char r_buffer[64];
+      for (int i=0; i<ret; i++;) {
+        r_buffer[i] = buffer[ret-1-i];
+      }
+      r_buffer[ret] = 0x00;
+      this->print(r_buffer);
+    } else {
+      this->print(buffer);
+    }
 }
 
 #ifdef USE_TIME
