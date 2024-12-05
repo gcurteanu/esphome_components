@@ -60,7 +60,8 @@ void HT16K33AlphaDisplay::display_() {
   uint8_t data[numc];
   memset(data, 0, numc);
   int pos = this->offset_;
-  for (int i = 0; i < (this->digits_ * 2); i++, pos++) {
+  //for (int i = 0; i < (this->digits_ * 2); i++, pos++) {
+  for (int i = 0; i < 16; i++, pos++) {
     if (pos >= len) {
       if (!this->continuous_)
         break;
