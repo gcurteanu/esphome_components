@@ -60,8 +60,8 @@ void HT16K33AlphaDisplay::display_() {
   uint8_t data[numc];
   memset(data, 0, numc);
   int pos = this->offset_;
-  //for (int i = 0; i < (this->digits_ * 2); i++, pos++) {
-  for (int i = 0; i < 16; i++, pos++) {
+  for (int i = 0; i < (this->digits_ * 2); i++, pos++) {
+  //for (int i = 0; i < 16; i++, pos++) {
     if (pos >= len) {
       if (!this->continuous_)
         break;
@@ -71,10 +71,10 @@ void HT16K33AlphaDisplay::display_() {
   }
 
 
-  /*ESP_LOGD("dsp", "chars=%d", (int)numc);
+  ESP_LOGD("dsp", "chars=%d", (int)numc);
   for(int i=0;i<numc;i++) {
     ESP_LOGD("dsp", "byte[%02d]=%04X", (int)i, (int)data[i]);
-  }*/
+  }
   pos = 0;
   for (auto *display : this->displays_) {
     display->write_bytes(DISPLAY_COMMAND_SET_DDRAM_ADDR, data + pos, 16);
